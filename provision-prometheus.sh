@@ -34,10 +34,18 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['localhost:9090']
-  - job_name: 'node_exporter'
+  - job_name: 'local_node_exporter'
     scrape_interval: 5s
     static_configs:
       - targets: ['localhost:9100']
+  - job_name: 'grafana_node_exporter'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['10.0.0.17:9100']
+  - job_name: 'grafana_app_metrics'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['10.0.0.17:3000']
 EOF
 
 cat > /etc/systemd/system/prometheus.service<<EOF
